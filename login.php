@@ -1,3 +1,6 @@
+<head>
+  <title>Login</title>
+</head>
 <?php
   
   $error = "";

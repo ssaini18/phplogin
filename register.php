@@ -1,3 +1,18 @@
+<head>
+<title>Register</title>
+<script type="text/javascript">
+  function showHint(str) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "php_ajax.php?q=" + str, true);
+    xmlhttp.send();
+  }
+</script>
+</head>
 <?php
 
   require 'datab.php';
@@ -53,7 +68,8 @@
         <p class="text-danger" align="center"><?php if (!empty($error)) {echo $error; }else { echo $success ;}  ?></p>
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <div class="form-group">
-            <input type="text" maxlength="15" name="username" class="form-control" placeholder="Username">
+            <input type="text" maxlength="15" name="username" class="form-control" placeholder="Username" onkeyup="showHint(this.value)">
+            <div class="text-info" id="txtHint"></div>
           </div>
           <div class="form-group">
             <input type="Password" name="password" class="form-control" placeholder="Password">
